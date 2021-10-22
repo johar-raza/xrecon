@@ -12,10 +12,10 @@ git clone https://github.com/johar-raza/xrecon.git && cd xrecon && chmod +x reco
 ```
 
 ### Usage
-The scripts takes one URL as the only argument.
+The scripts takes one domain as the only argument.
 
 ```bash
-./recon.sh <URL>
+./recon.sh <domain>
 ```
 
 ### Dependencies
