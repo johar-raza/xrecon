@@ -103,9 +103,11 @@ echo ""
 echo "[+] Scraping wayback data..."
 cat $url/recon/subdomains.txt | waybackurls | sort -u >> $url/recon/wayback/wayback_output.txt
 
+echo ""
+
 echo "[+] Pulling and compiling all possible params found in wayback data..."
 cat $url/recon/wayback/wayback_output.txt | grep '?*=' | cut -d '=' -f 1 | sort -u >> $url/recon/wayback/params/wayback_params.txt
-for line in $(cat $url/recon/wayback/params/wayback_params.txt);do echo $line'=';done
+#for line in $(cat $url/recon/wayback/params/wayback_params.txt);do echo $line'=';done
 
 echo ""
 
@@ -113,19 +115,19 @@ echo "[+] Pulling and compiling js/php/aspx/jsp/json files from wayback output..
 for line in $(cat $url/recon/wayback/wayback_output.txt);do
     ext="${line##*.}"
     if [[ "$ext" == "js" ]]; then
-        echo $line | sort -u | tee -a  $url/recon/wayback/extensions/js.txt
+        echo $line | sort -u >>  $url/recon/wayback/extensions/js.txt
     fi
     if [[ "$ext" == "html" ]];then
-        echo $line | sort -u | tee -a $url/recon/wayback/extensions/jsp.txt
+        echo $line | sort -u >> $url/recon/wayback/extensions/jsp.txt
     fi
     if [[ "$ext" == "json" ]];then
-        echo $line | sort -u | tee -a $url/recon/wayback/extensions/json.txt
+        echo $line | sort -u >> $url/recon/wayback/extensions/json.txt
     fi
     if [[ "$ext" == "php" ]];then
-        echo $line | sort -u | tee -a $url/recon/wayback/extensions/php.txt
+        echo $line | sort -u >> $url/recon/wayback/extensions/php.txt
     fi
     if [[ "$ext" == "aspx" ]];then
-        echo $line | sort -u | tee -a $url/recon/wayback/extensions/aspx.txt
+        echo $line | sort -u >> $url/recon/wayback/extensions/aspx.txt
     fi
 done
 
