@@ -59,7 +59,6 @@ fi
 
 if [ ! -d "$url/recon/scans" ];then
 	mkdir $url/recon/scans
-	touch $url/recon/scans/scanned.txt
 fi
 
 if [ ! -d "$url/recon/potential_takeovers" ];then
